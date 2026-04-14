@@ -1,5 +1,5 @@
 ---
-title: "[자료구조론] 1.Introduction"
+title: "[자료구조론] 1 개요(Introduction)"
 date: 2026-04-01
 tags:
   - 컴퓨터사이언스
