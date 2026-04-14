@@ -201,6 +201,7 @@ int IsEmpty(List L) {
 
 ![[Pasted image 20260413193601.png|300]]
 
+
 ## IsLast: 해당 노드가 마지막인지 확인
 이 함수는 특정 위치가 리스트의 가장 끝 노드인지 판별한다
 
@@ -348,7 +349,7 @@ void Delete(ElementType X, List L) {
 ```
 
 ![[Pasted image 20260413205100.png|400]]
-![[Pasted image 20260413205233.png|400]]\
+![[Pasted image 20260413205233.png|400]]
 
 **`FindPrevious` 재확인**
 ` Delete` 연산을 성공시키기 위해 가장 중요한 보조 함수이다
@@ -371,6 +372,7 @@ struct Node{
 ```
 
 ![[Pasted image 20260413210821.png|400]]
+
 
 ## 삽입 연산
 `Position P` 바로 다음에 데이터 $X$를 가진 새 노드(`TmpCell`)를 삽입하는 과정이다
