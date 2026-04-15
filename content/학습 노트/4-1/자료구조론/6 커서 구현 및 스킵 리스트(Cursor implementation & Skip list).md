@@ -1,5 +1,5 @@
 ---
-title: "[자료구조론] 6 커서 구현 및 스킵 리스트(Cursor & implementation Skip list)"
+title: "[자료구조론] 6 커서 구현 및 스킵 리스트(Cursor implementation & Skip list)"
 date: 2026-04-15
 tags:
   - 컴퓨터사이언스
