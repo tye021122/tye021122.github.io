@@ -8,3 +8,13 @@ html {
 //a {
 //    color: #1D2475 !important;
 //}
+
+// 수식(KaTeX) 강제 가운데 정렬 및 영역 확장
+article .katex-display {
+  display: block;
+  text-align: center;
+  width: 100%;
+  margin: 1.5rem 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
