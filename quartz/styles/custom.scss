@@ -2,9 +2,18 @@
 
 // put your custom CSS here!
 html {
-  font-size: 11px; 
+  font-size: 11px;
 }
 
 //a {
 //    color: #1D2475 !important;
 //}
+
+// 수식(Display Math) 가운데 정렬 및 여백 설정
+.katex-display,
+.math-display {
+  text-align: center;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  overflow-x: auto; // 모바일 등에서 수식이 너무 길어질 경우를 대비해 가로 스크롤 추가
+}
