@@ -16,6 +16,7 @@ aliases:
 ---
 
 <br>
+
 # 2. 위치적 기수법(Positional Number System)
 
 > [!NOTE] 위치적 기수법의 정의
@@ -31,6 +32,7 @@ $$543_{10} = 5 \times 10^2 + 4 \times 10^1 + 3 \times 10^0$$
 
 <br>
 <br>
+
 ---
 <br>
 <br>
@@ -39,6 +41,7 @@ $$543_{10} = 5 \times 10^2 + 4 \times 10^1 + 3 \times 10^0$$
 10진수를 다른 진법으로 바꿀 때는 **정수부**와 **소수부**의 계산 방식을 다르게 적용해야 한다
 <br>
 <br>
+
 ## 3.1 정수부: 몫-나머지 방식 (Quotient-Remainder)
 
 > [!NOTE] 중첩 확장 (Nested Expansion)
