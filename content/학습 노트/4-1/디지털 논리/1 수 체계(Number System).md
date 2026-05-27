@@ -31,7 +31,9 @@ aliases:
 
 **10진수(Decimal) 표현 예시:**
 
-$$543_{10} = 5 \times 10^2 + 4 \times 10^1 + 3 \times 10^0$$
+$$
+543_{10} = 5 \times 10^2 + 4 \times 10^1 + 3 \times 10^0
+$$
 
 <br>
 
@@ -65,7 +67,7 @@ $$543_{10} = 5 \times 10^2 + 4 \times 10^1 + 3 \times 10^0$$
 **계산 방법:** 소수부에 기수 $r$을 곱한 뒤, 결과로 나오는 값의 **정수 부분**을 떼어내어 변환된 진수의 자릿수로 적용한다. 남은 소수부에 다시 $r$을 곱하는 과정을 소수부가 0이 될 때까지 반복한다(정수부 변환과 달리, 구해진 정수들을 **위에서 아래 순서대로** 읽어 적는다)
 
 <figure> <img src="Pasted image 20260325220633.png" width="400"> <figcaption>그림 2. 반복 곱셈 방식 공식</figcaption> </figure>
-<figure> <img src="Pasted image 20260325220901.png|400" width="400"> <figcaption>그림 3. 반복 곱셈 방식 에시</figcaption> </figure>
+<figure> <img src="Pasted image 20260325220901.png" width="400"> <figcaption>그림 3. 반복 곱셈 방식 에시</figcaption> </figure>
 
 > [!WARNING] 무한 소수 주의
 > $0.7_{10}$처럼 기수 $r$을 계속 곱해도 소수 부분이 절대 0이 되지 않고 같은 패턴의 값이 반복되는 경우, **순환 소수** 형태로 표현된다 
