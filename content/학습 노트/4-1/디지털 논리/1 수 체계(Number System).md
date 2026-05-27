@@ -65,7 +65,7 @@ $$543_{10} = 5 \times 10^2 + 4 \times 10^1 + 3 \times 10^0$$
 **계산 방법:** 소수부에 기수 $r$을 곱한 뒤, 결과로 나오는 값의 **정수 부분**을 떼어내어 변환된 진수의 자릿수로 적용한다. 남은 소수부에 다시 $r$을 곱하는 과정을 소수부가 0이 될 때까지 반복한다(정수부 변환과 달리, 구해진 정수들을 **위에서 아래 순서대로** 읽어 적는다)
 
 <figure> <img src="Pasted image 20260325220633.png" width="400"> <figcaption>그림 2. 반복 곱셈 방식 공식</figcaption> </figure>
-<figure> <img src="[[Pasted image 20260325220901.png|400" width="400"> <figcaption>그림 3. 반복 곱셈 방식 에시</figcaption> </figure>
+<figure> <img src="Pasted image 20260325220901.png|400" width="400"> <figcaption>그림 3. 반복 곱셈 방식 에시</figcaption> </figure>
 
 > [!WARNING] 무한 소수 주의
 > $0.7_{10}$처럼 기수 $r$을 계속 곱해도 소수 부분이 절대 0이 되지 않고 같은 패턴의 값이 반복되는 경우, **순환 소수** 형태로 표현된다 
@@ -103,13 +103,19 @@ $$543_{10} = 5 \times 10^2 + 4 \times 10^1 + 3 \times 10^0$$
 	
 	<figure> <img src="Pasted image 20260326110651.png" width="200"> <figcaption>그림 5. 이진 연산의 덧셈</figcaption> </figure>
 
+<br>
+
 - **뺄셈(Subtraction)**
 	
 	<figure> <img src="Pasted image 20260326110958.png" width="200"> <figcaption>그림 6. 이진 연산의 뺄셈</figcaption> </figure>
 
+<br>
+
 - **곱셈(Multiplication)**
 	
 	<figure> <img src="Pasted image 20260326111014.png" width="200"> <figcaption>그림 7. 이진 연산의 곱셈</figcaption> </figure>
+
+<br>
 
 - **나눗셈(Division)**
 	
@@ -173,6 +179,8 @@ $$543_{10} = 5 \times 10^2 + 4 \times 10^1 + 3 \times 10^0$$
 - **2의 보수 덧셈:** 부호 비트를 포함하여 양수인 것처럼 일반적인 뎃셈을 수행한다. 최상위 비트 밖으로 발생하는 올림수(Carry-out)는 무시한다(단, 오버플로우 검사 필요)
 	
 	<figure> <img src="Pasted image 20260326125011.png" width="300"> <figcaption>그림 11. 2의 보수의 덧셈 예제</figcaption> </figure>
+
+<br>
 
 - **2의 보수 뺄셈:** 뺄셈을 음수의 덧셈으로 변환하여 처리한다. 뺄수의 비트를 반전시킨 후, 가산기의 하위 비트 Carry-in($C_{in}$)에 1을 입력하면 하드웨어 추가 없이 곧바로 2의 보수 덧셈과 같은 결과를 얻는다
 	
