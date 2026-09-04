@@ -2,7 +2,7 @@ import { PageLayout, SharedLayout } from "./quartz/cfg"
 import * as Component from "./quartz/components"
 import { QuartzComponent } from "./quartz/components/types"
 
-// 홈에서는 글 메타 정보와 오른쪽 보조 패널을 렌더링하지 않음.
+// 홈에서는 글 메타 정보와 목차·백링크만 숨김.
 const articleOnly = (component: QuartzComponent) =>
   Component.ConditionalRender({
     component,
@@ -49,8 +49,13 @@ export const defaultContentPageLayout: PageLayout = {
     Component.Explorer(),
   ],
   right: [
-    articleOnly(Component.DesktopOnly(Component.TableOfContents())),
+    // 홈은 전체 노트 연결을, 개별 글은 주변 연결을 먼저 표시.
+    Component.ConditionalRender({
+      component: Component.Graph({ localGraph: { depth: -1, scale: 0.9 } }),
+      condition: (page) => page.fileData.slug === "index",
+    }),
     articleOnly(Component.Graph()),
+    articleOnly(Component.DesktopOnly(Component.TableOfContents())),
     articleOnly(Component.Backlinks()),
   ],
 }

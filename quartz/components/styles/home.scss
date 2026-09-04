@@ -1,18 +1,7 @@
-// 홈에만 적용: 오른쪽 패널을 비우고 소개와 목록에 공간 배분.
+// 홈도 기본 3열을 사용해 오른쪽 그래프를 유지.
 body[data-slug="index"] {
-  .page > #quartz-body > .sidebar.right,
   .page-header {
     display: none;
-  }
-
-  @media (min-width: 1200px) {
-    .page > #quartz-body {
-      grid-template-columns: 300px minmax(0, 1fr);
-      grid-template-areas:
-        "grid-sidebar-left grid-header"
-        "grid-sidebar-left grid-center"
-        "grid-sidebar-left grid-footer";
-    }
   }
 }
 
