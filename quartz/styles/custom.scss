@@ -190,12 +190,21 @@ article h2 {
   }
 }
 
+// 목차는 본문보다 작고 가볍게, 현재 항목만 강조.
+.sidebar.right .toc .toc-header h3 {
+  font-size: 0.9375rem;
+}
+
 .sidebar.right .toc .toc-content > li > a {
   display: block;
-  padding: 0.3rem 0;
+  padding: 0.25rem 0;
   color: var(--dark);
   opacity: 1;
-  line-height: 1.6;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.55;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
 }
 
 // 현재 화면에 들어온 본문 구간
