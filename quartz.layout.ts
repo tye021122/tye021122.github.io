@@ -1,5 +1,13 @@
 import { PageLayout, SharedLayout } from "./quartz/cfg"
 import * as Component from "./quartz/components"
+import { QuartzComponent } from "./quartz/components/types"
+
+// 홈에서는 글 메타 정보와 오른쪽 보조 패널을 렌더링하지 않음.
+const articleOnly = (component: QuartzComponent) =>
+  Component.ConditionalRender({
+    component,
+    condition: (page) => page.fileData.slug !== "index",
+  })
 
 // components shared across all pages
 export const sharedPageComponents: SharedLayout = {
@@ -21,9 +29,9 @@ export const defaultContentPageLayout: PageLayout = {
       component: Component.Breadcrumbs(),
       condition: (page) => page.fileData.slug !== "index",
     }),
-    Component.ArticleTitle(),
-    Component.ContentMeta(),
-    Component.TagList(),
+    articleOnly(Component.ArticleTitle()),
+    articleOnly(Component.ContentMeta()),
+    articleOnly(Component.TagList()),
   ],
   left: [
     Component.PageTitle(),
@@ -41,9 +49,9 @@ export const defaultContentPageLayout: PageLayout = {
     Component.Explorer(),
   ],
   right: [
-    Component.DesktopOnly(Component.TableOfContents()),// 현재 글의 목차
-    Component.Graph(),// 노트 연결 그래프
-    Component.Backlinks(),// 현재 글을 링크한 다른 노트
+    articleOnly(Component.DesktopOnly(Component.TableOfContents())),
+    articleOnly(Component.Graph()),
+    articleOnly(Component.Backlinks()),
   ],
 }
 
