@@ -57,6 +57,31 @@ article h2 {
   line-height: 1.45;
 }
 
+// 데스크톱: 탐색기 공간을 확보하고 본문은 최대 760px로 제한.
+@media (min-width: 1200px) {
+  .page {
+    max-width: 1380px;
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
+
+  .page > #quartz-body {
+    grid-template-columns: 300px minmax(0, 760px) 200px;
+    column-gap: 40px;
+    padding: 0;
+  }
+
+  // 제목과 양쪽 패널의 시작 위치를 96px에서 48px로 올림.
+  .page > #quartz-body .sidebar {
+    min-width: 0;
+    padding: 3rem 0 1.5rem;
+  }
+
+  .page > #quartz-body .page-header {
+    margin-top: 3rem;
+  }
+}
+
 @media (min-width: 1200px) {
   // 두 테마에서 같은 패널 구조를 사용하고, 다크 모드는 바탕만 더 어둡게.
   :root {
