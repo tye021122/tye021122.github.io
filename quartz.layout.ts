@@ -41,9 +41,9 @@ export const defaultContentPageLayout: PageLayout = {
     Component.Explorer(),
   ],
   right: [
-    Component.Graph(),
-    Component.DesktopOnly(Component.TableOfContents()),
-    Component.Backlinks(),
+    Component.DesktopOnly(Component.TableOfContents()),// 현재 글의 목차
+    Component.Graph(),// 노트 연결 그래프
+    Component.Backlinks(),// 현재 글을 링크한 다른 노트
   ],
 }
 
