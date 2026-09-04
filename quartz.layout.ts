@@ -16,8 +16,7 @@ export const sharedPageComponents: SharedLayout = {
   afterBody: [],
   footer: Component.Footer({
     links: {
-      GitHub: "https://github.com/jackyzha0/quartz",
-      "Discord Community": "https://discord.gg/cRFFHYye7t",
+      GitHub: "https://github.com/tye021122",
     },
   }),
 }
@@ -51,7 +50,7 @@ export const defaultContentPageLayout: PageLayout = {
   right: [
     // 홈은 전체 노트 연결을, 개별 글은 주변 연결을 먼저 표시.
     Component.ConditionalRender({
-      component: Component.Graph({ localGraph: { depth: -1, scale: 0.9 } }),
+      component: Component.Graph({ localGraph: { depth: -1, scale: 0.9, autoFit: true } }),
       condition: (page) => page.fileData.slug === "index",
     }),
     articleOnly(Component.Graph()),

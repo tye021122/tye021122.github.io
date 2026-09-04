@@ -87,6 +87,7 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
     showTags,
     focusOnHover,
     enableRadial,
+    autoFit,
   } = JSON.parse(graph.dataset["cfg"]!) as D3Config
 
   const data: Map<SimpleSlug, ContentDetails> = new Map(
@@ -173,6 +174,9 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
 
   const radius = (Math.min(width, height) / 2) * 0.8
   if (enableRadial) simulation.force("radial", forceRadial(radius).strength(0.2))
+
+  // 홈 전체 그래프는 배치를 안정시킨 뒤 패널 안에 맞춰 시작.
+  if (autoFit) simulation.stop().tick(300)
 
   // precompute style prop strings as pixi doesn't support css variables
   const cssVars = [
@@ -497,30 +501,50 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
   }
 
   if (enableZoom) {
-    select<HTMLCanvasElement, NodeData>(app.canvas).call(
-      zoom<HTMLCanvasElement, NodeData>()
-        .extent([
-          [0, 0],
-          [width, height],
-        ])
-        .scaleExtent([0.25, 4])
-        .on("zoom", ({ transform }) => {
-          currentTransform = transform
-          stage.scale.set(transform.k, transform.k)
-          stage.position.set(transform.x, transform.y)
+    const zoomBehavior = zoom<HTMLCanvasElement, NodeData>()
+      .extent([
+        [0, 0],
+        [width, height],
+      ])
+      .scaleExtent([autoFit ? 0.02 : 0.25, 4])
+      .on("zoom", ({ transform }) => {
+        currentTransform = transform
+        stage.scale.set(transform.k, transform.k)
+        stage.position.set(transform.x, transform.y)
 
-          // zoom adjusts opacity of labels too
-          const scale = transform.k * opacityScale
-          let scaleOpacity = Math.max((scale - 1) / 3.75, 0)
-          const activeNodes = nodeRenderData.filter((n) => n.active).flatMap((n) => n.label)
+        // zoom adjusts opacity of labels too
+        const scale = transform.k * opacityScale
+        let scaleOpacity = Math.max((scale - 1) / 3.75, 0)
+        const activeNodes = nodeRenderData.filter((n) => n.active).flatMap((n) => n.label)
 
-          for (const label of labelsContainer.children) {
-            if (!activeNodes.includes(label)) {
-              label.alpha = scaleOpacity
-            }
+        for (const label of labelsContainer.children) {
+          if (!activeNodes.includes(label)) {
+            label.alpha = scaleOpacity
           }
-        }),
-    )
+        }
+      })
+    const canvas = select<HTMLCanvasElement, NodeData>(app.canvas)
+    canvas.call(zoomBehavior)
+    if (autoFit && graphData.nodes.length) {
+      const xs = graphData.nodes.map((node) => node.x ?? 0)
+      const ys = graphData.nodes.map((node) => node.y ?? 0)
+      const left = Math.min(...xs),
+        right = Math.max(...xs)
+      const top = Math.min(...ys),
+        bottom = Math.max(...ys)
+      const padding = 24
+      const fit = Math.max(
+        0.02,
+        Math.min(
+          1,
+          (width - padding * 2) / Math.max(1, right - left),
+          (height - padding * 2) / Math.max(1, bottom - top),
+        ),
+      )
+      const x = width / 2 - fit * ((left + right) / 2 + width / 2)
+      const y = height / 2 - fit * ((top + bottom) / 2 + height / 2)
+      canvas.call(zoomBehavior.transform, zoomIdentity.translate(x, y).scale(fit))
+    }
   }
 
   let stopAnimation = false
@@ -528,7 +552,7 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
     if (stopAnimation) return
     for (const n of nodeRenderData) {
       const { x, y } = n.simulationData
-      if (!x || !y) continue
+      if (x === undefined || y === undefined) continue
       n.gfx.position.set(x + width / 2, y + height / 2)
       if (n.label) {
         n.label.position.set(x + width / 2, y + height / 2)
@@ -552,6 +576,7 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
   requestAnimationFrame(animate)
   return () => {
     stopAnimation = true
+    simulation.stop()
     app.destroy()
   }
 }
