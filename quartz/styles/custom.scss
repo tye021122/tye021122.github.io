@@ -58,18 +58,28 @@ article h2 {
 }
 
 @media (min-width: 1200px) {
-  :root:not([saved-theme="dark"]) {
+  // 두 테마에서 같은 패널 구조를 사용하고, 다크 모드는 바탕만 더 어둡게.
+  :root {
+    --explorer-bg: #182B49;
+    --explorer-text: #F5F1E8;
+    --explorer-accent: #B7472A;
+
+    &[saved-theme="dark"] {
+      --explorer-bg: #122038;
+      --explorer-accent: #F2A477;
+    }
+
     .sidebar.left .explorer {
-      background: #182B49;
-      color: #F5F1E8;
-      padding: 1.25rem;
+      background: var(--explorer-bg);
+      color: var(--explorer-text);
+      padding: 1rem 0.75rem;
       border-radius: 0;
     }
 
     // 탐색기 제목
     .sidebar.left .explorer .desktop-explorer,
     .sidebar.left .explorer .desktop-explorer h2 {
-      color: #F5F1E8;
+      color: var(--explorer-text);
     }
 
     // 폴더 이름과 화살표
@@ -77,16 +87,30 @@ article h2 {
     .sidebar.left .explorer .folder-container button,
     .sidebar.left .explorer .folder-container button span,
     .sidebar.left .explorer .folder-icon {
-      color: #F5F1E8;
+      color: var(--explorer-text);
     }
 
-    // 개별 글 링크
+    .sidebar.left .explorer .folder-container > div {
+      min-width: 0;
+    }
+
+    .sidebar.left .explorer .folder-container a,
+    .sidebar.left .explorer .folder-container button span {
+      font-size: 0.875rem;
+      font-weight: 600;
+      line-height: 1.6;
+      overflow-wrap: anywhere;
+    }
+
+    // 글 제목은 보통 굵기로, 들여쓰기는 줄여 읽을 공간 확보.
     .sidebar.left .explorer .explorer-content li>a {
       display: block;
-      padding: 0.4rem 0.5rem;
-      color: #F5F1E8;
+      padding: 0.35rem 0.375rem;
+      border-left: 3px solid transparent;
+      color: var(--explorer-text);
       opacity: 1;
       font-size: 0.875rem;
+      font-weight: 400;
       line-height: 1.65;
       overflow-wrap: anywhere;
     }
@@ -95,13 +119,34 @@ article h2 {
     .sidebar.left .explorer .explorer-content li>a.active {
       background: #F5F1E8;
       color: #182B49;
-      border-left: 3px solid #B7472A;
+      border-left-color: var(--explorer-accent);
       font-weight: 600;
     }
 
     // 폴더 계층 연결선
     .sidebar.left .explorer .folder-outer>ul {
-      border-left-color: #F5F1E8;
+      margin-left: 3px;
+      padding-left: 0.5rem;
+      border-left-color: #F5F1E833;
+    }
+
+    // 스크롤바도 패널 색에 맞춰 눈에 덜 띄게.
+    .sidebar.left .explorer .explorer-content {
+      scrollbar-width: thin;
+      scrollbar-color: #F5F1E880 var(--explorer-bg);
+    }
+
+    .sidebar.left .explorer .explorer-content::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .sidebar.left .explorer .explorer-content::-webkit-scrollbar-track {
+      background: var(--explorer-bg);
+    }
+
+    .sidebar.left .explorer .explorer-content::-webkit-scrollbar-thumb {
+      background: #F5F1E880;
+      border-radius: 3px;
     }
   }
 }
