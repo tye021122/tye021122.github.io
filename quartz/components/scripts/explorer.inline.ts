@@ -86,10 +86,30 @@ function createFileNode(currentSlug: FullSlug, node: FileTrieNode): HTMLLIElemen
   const a = li.querySelector("a") as HTMLAnchorElement
   a.href = resolveRelative(currentSlug, node.slug)
   a.dataset.for = node.slug
-  a.textContent = node.displayName
+  // 반복된 상위 폴더명만 생략하고 원문은 접근성 이름으로 보존.
+  a.setAttribute("aria-label", node.displayName)
+  let label = node.displayName
+  const prefix = label.match(/^\[([^\]]+)\]\s*/)
+  const normalize = (value: string) => value.replace(/[\s-]/g, "").toLowerCase()
+  if (prefix && node.slug.split("/").slice(0, -1).some((part) => normalize(part) === normalize(prefix[1]))) {
+    label = label.slice(prefix[0].length)
+  }
+  const subtitle = label.match(/\s*\(([A-Za-z][^()]*)\)\s*$/)
+  if (subtitle) label = label.slice(0, subtitle.index).trim()
+  const title = document.createElement("span")
+  title.className = "explorer-note-title"
+  title.textContent = label
+  a.append(title)
+  if (subtitle) {
+    const detail = document.createElement("span")
+    detail.className = "explorer-note-subtitle"
+    detail.textContent = subtitle[1]
+    a.append(detail)
+  }
 
   if (currentSlug === node.slug) {
     a.classList.add("active")
+    a.setAttribute("aria-current", "page")
   }
 
   return li

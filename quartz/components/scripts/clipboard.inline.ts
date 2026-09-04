@@ -15,14 +15,16 @@ document.addEventListener("nav", () => {
       button.className = "clipboard-button"
       button.type = "button"
       button.innerHTML = svgCopy
-      button.ariaLabel = "Copy source"
+      button.ariaLabel = "코드 복사"
       function onClick() {
         navigator.clipboard.writeText(source).then(
           () => {
             button.blur()
             button.innerHTML = svgCheck
+            button.ariaLabel = "복사 완료"
             setTimeout(() => {
               button.innerHTML = svgCopy
+              button.ariaLabel = "코드 복사"
               button.style.borderColor = ""
             }, 2000)
           },

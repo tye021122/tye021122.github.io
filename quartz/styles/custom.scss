@@ -8,6 +8,21 @@ article .callout[data-callout] {
 }
 
 // put your custom CSS here!
+.explorer .explorer-note-title {
+  display: block;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+// 영문 부제는 한 단계 작게 표시해 한글 제목과 구분.
+.explorer .explorer-note-subtitle {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1.5;
+  margin-top: 0.15rem;
+}
+
 html {
   font-size: 16px;
 }

@@ -377,8 +377,8 @@ async function setupSearch(searchElement: Element, currentSlug: FullSlug, data: 
     removeAllChildren(results)
     if (finalResults.length === 0) {
       results.innerHTML = `<a class="result-card no-match">
-          <h3>No results.</h3>
-          <p>Try another search term?</p>
+          <h3>검색 결과가 없습니다.</h3>
+          <p>다른 검색어로 다시 검색해 보세요.</p>
       </a>`
     } else {
       results.append(...finalResults.map(resultToHTML))

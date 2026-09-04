@@ -30,16 +30,16 @@ export default {
       darkMode: "다크 모드",
     },
     readerMode: {
-      title: "리더 모드",
+      title: "읽기 모드",
     },
     explorer: {
-      title: "탐색기",
+      title: "노트 탐색",
     },
     footer: {
-      createdWith: "Created with",
+      createdWith: "제작 도구:",
     },
     graph: {
-      title: "그래프 뷰",
+      title: "연결 그래프",
     },
     recentNotes: {
       title: "최근 게시글",
@@ -57,7 +57,7 @@ export default {
       title: "목차",
     },
     contentMeta: {
-      readingTime: ({ minutes }) => `${minutes} min read`,
+      readingTime: ({ minutes }) => `읽는 데 약 ${minutes}분`,
     },
   },
   pages: {
@@ -66,7 +66,7 @@ export default {
       lastFewNotes: ({ count }) => `최근 ${count} 건`,
     },
     error: {
-      title: "Not Found",
+      title: "페이지를 찾을 수 없습니다",
       notFound: "페이지가 존재하지 않거나 비공개 설정이 되어 있습니다.",
       home: "홈페이지로 돌아가기",
     },
