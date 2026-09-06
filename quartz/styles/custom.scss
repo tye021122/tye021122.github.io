@@ -1,5 +1,14 @@
 @use "./base.scss";
 
+:root {
+  // 본문보다 살짝 부드러운 색으로 소제목의 계층을 구분한다.
+  --section-heading: #294264;
+
+  &[saved-theme="dark"] {
+    --section-heading: #d8deea;
+  }
+}
+
 // 콜아웃은 테마 색으로 통일하되 종류별 아이콘은 유지.
 article .callout[data-callout] {
   --color: var(--tertiary);
@@ -77,6 +86,43 @@ article h2 {
 
   // 소제목이 여러 줄일 때의 줄 간격.
   line-height: 1.45;
+}
+
+// 글 제목, 보조 정보, 본문 제목이 서로 경쟁하지 않도록 색의 역할을 분리한다.
+article:not(.home-page) h2,
+article:not(.home-page) h3,
+article:not(.home-page) h4,
+article:not(.home-page) h5,
+article:not(.home-page) h6 {
+  color: var(--section-heading);
+}
+
+.breadcrumb-container .breadcrumb-element a {
+  color: var(--gray);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.breadcrumb-container .breadcrumb-element:last-child a {
+  color: var(--darkgray);
+  font-weight: 600;
+}
+
+.breadcrumb-container .breadcrumb-element p {
+  color: var(--gray);
+  opacity: 0.65;
+}
+
+.content-meta {
+  color: var(--gray);
+  font-size: 0.875rem;
+}
+
+ul.tags a.internal.tag-link {
+  color: var(--tertiary);
+  background: color-mix(in srgb, var(--tertiary) 9%, transparent);
+  font-size: 0.875rem;
+  font-weight: 600;
 }
 
 // 데스크톱: 탐색기 공간을 확보하고 본문은 최대 760px로 제한.
