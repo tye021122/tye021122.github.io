@@ -16,12 +16,15 @@
     overflow: hidden;
 
     & > .global-graph-icon {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
       cursor: pointer;
       background: none;
       border: none;
       color: var(--dark);
-      opacity: 0.5;
-      width: 24px;
+      opacity: 0.65;
+      width: auto;
       height: 24px;
       position: absolute;
       padding: 0.2rem;
@@ -32,6 +35,18 @@
       background-color: transparent;
       transition: background-color 0.5s ease;
       cursor: pointer;
+
+      & > span {
+        font-size: 0.7rem;
+        white-space: nowrap;
+      }
+
+      & > svg {
+        width: 14px;
+        height: 14px;
+        flex: none;
+      }
+
       &:hover {
         background-color: var(--lightgray);
       }

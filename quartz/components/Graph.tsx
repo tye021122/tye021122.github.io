@@ -70,6 +70,7 @@ export default ((opts?: Partial<GraphOptions>) => {
         <div class="graph-outer">
           <div class="graph-container" data-cfg={JSON.stringify(localGraph)}></div>
           <button class="global-graph-icon" aria-label="전체 연결 그래프 열기">
+            <span>전체 보기 ↗</span>
             <svg
               version="1.1"
               xmlns="http://www.w3.org/2000/svg"
