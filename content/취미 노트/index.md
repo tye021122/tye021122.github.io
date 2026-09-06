@@ -1,7 +1,7 @@
 ---
 title: 취미 노트
-description: 취미을 즐기며 발견한 생각과 감상을 기록합니다.
-enableToc: "false"
+description: 취미를 즐기며 발견한 생각과 감상을 기록합니다.
+enableToc: false
 ---
 
 좋아하는 작품을 오래 기억하기 위해 남기는 취미 기록입니다.
