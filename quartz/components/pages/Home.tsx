@@ -62,17 +62,22 @@ const Home: QuartzComponent = ({ fileData, tree, allFiles, cfg }) => {
         {notebooks.map((notebook, index) => {
           const folder = slugifyFilePath(notebook.name as FilePath)
           const count = notes.filter((note) => note.slug!.startsWith(`${folder}/`)).length
+          const hasLandingPage = allFiles.some((file) => file.slug === `${folder}/index`)
           const content = (
             <>
               <span class="home-number">0{index + 1} /</span>
               <h2>{notebook.name}</h2>
               <p>{notebook.description}</p>
               <span class="home-category-meta">
-                {count ? `${count}개의 기록 ↗` : "첫 기록을 준비하고 있어요"}
+                {count
+                  ? `${count}개의 기록 ↗`
+                  : hasLandingPage
+                    ? "노트 둘러보기 ↗"
+                    : "첫 기록을 준비하고 있어요"}
               </span>
             </>
           )
-          return count ? (
+          return count || hasLandingPage ? (
             <a
               key={folder}
               class="internal home-notebook"
