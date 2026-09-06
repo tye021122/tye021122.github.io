@@ -80,5 +80,6 @@ export const defaultListPageLayout: PageLayout = {
     }),
     Component.Explorer(),
   ],
-  right: [],
+  // 폴더 인덱스에서도 연결 그래프를 먼저 보여주고, 문서 목차는 그 아래에 둔다.
+  right: [Component.Graph(), Component.DesktopOnly(Component.TableOfContents())],
 }
