@@ -258,9 +258,29 @@ ul.tags a.internal.tag-link {
 }
 
 @media (min-width: 1200px) {
+  // 그래프 아래의 남은 화면 높이를 목차가 정확히 사용하도록 한다.
+  // flex-basis가 내용 높이를 기준으로 잡히면 긴 목차의 스크롤 끝이
+  // 사이드바 바깥에서 잘리므로, 0을 기준으로 남은 공간을 배분한다.
+  .sidebar.right > .graph {
+    flex: 0 0 auto;
+  }
+
   .sidebar.right .toc {
+    flex: 1 1 0;
+    min-height: 0;
     border-left: 1px solid var(--lightgray);
     padding-left: 1.25rem;
+  }
+
+  .sidebar.right .toc .toc-header {
+    flex: 0 0 auto;
+  }
+
+  .sidebar.right .toc .toc-content.overflow {
+    flex: 1 1 auto;
+    min-height: 0;
+    max-height: none;
+    overflow-y: auto;
   }
 }
 

@@ -18,27 +18,6 @@ const notebooks = [
   { name: "취미 노트", description: "영화와 책, 게임 속에서 발견한 좋아하는 것들을 남깁니다." },
 ]
 
-function formatNoteTitle(title: string, slug: string) {
-  let main = title
-  const folderPrefix = main.match(/^\[([^\]]+)\]\s*/)
-  const ancestors = slug
-    .split("/")
-    .slice(0, -1)
-    .map((part) => part.replace(/-/g, " "))
-
-  // 제목의 [폴더명]이 실제 상위 폴더와 같을 때만 중복 표기를 제거.
-  if (folderPrefix && ancestors.includes(folderPrefix[1])) {
-    main = main.slice(folderPrefix[0].length)
-  }
-
-  const subtitle = main.match(/\s*\(([A-Za-z][^()]*)\)\s*$/)
-  if (subtitle) {
-    main = main.slice(0, subtitle.index).trim()
-  }
-
-  return { main, subtitle: subtitle?.[1] }
-}
-
 const Home: QuartzComponent = ({ fileData, tree, allFiles, cfg }) => {
   // 발행된 실제 글만 모아 설정된 날짜 기준으로 정렬.
   const notes = allFiles
@@ -100,7 +79,7 @@ const Home: QuartzComponent = ({ fileData, tree, allFiles, cfg }) => {
         <ul>
           {notes.slice(0, 6).map((note) => {
             const date = getDate(cfg, note)
-            const title = formatNoteTitle(note.frontmatter?.title ?? note.slug!, note.slug!)
+            const title = note.frontmatter?.title ?? note.slug!
             return (
               <li key={note.slug}>
                 <a
@@ -111,8 +90,7 @@ const Home: QuartzComponent = ({ fileData, tree, allFiles, cfg }) => {
                     {note.slug!.split("/")[0].replace(/-/g, " ")}
                   </span>
                   <span class="home-note-heading">
-                    <span class="home-note-title">{title.main}</span>
-                    {title.subtitle && <span class="home-note-subtitle">({title.subtitle})</span>}
+                    <span class="home-note-title">{title}</span>
                   </span>
                   {date && <Date date={date} locale="ko-KR" />}
                 </a>
