@@ -97,13 +97,15 @@ article:not(.home-page) h6 {
   color: var(--section-heading);
 }
 
-.breadcrumb-container .breadcrumb-element a {
+.breadcrumb-container .breadcrumb-element a,
+.breadcrumb-container .breadcrumb-element span {
   color: var(--gray);
   font-size: 0.875rem;
   font-weight: 500;
 }
 
-.breadcrumb-container .breadcrumb-element:last-child a {
+.breadcrumb-container .breadcrumb-element:last-child a,
+.breadcrumb-container .breadcrumb-element:last-child span {
   color: var(--darkgray);
   font-weight: 600;
 }

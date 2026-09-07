@@ -7,6 +7,7 @@ import { trieFromAllFiles } from "../util/ctx"
 type CrumbData = {
   displayName: string
   path: string
+  linkable: boolean
 }
 
 interface BreadcrumbOptions {
@@ -39,6 +40,7 @@ function formatCrumb(displayName: string, baseSlug: FullSlug, currentSlug: Simpl
   return {
     displayName: displayName.replaceAll("-", " "),
     path: resolveRelative(baseSlug, currentSlug),
+    linkable: false,
   }
 }
 
@@ -64,6 +66,9 @@ export default ((opts?: Partial<BreadcrumbOptions>) => {
         crumb.displayName = options.rootName
       }
 
+      // 홈과 실제 index.md가 있는 폴더만 이동 가능한 경로로 표시한다.
+      crumb.linkable = idx === 0 || node.data !== null
+
       // For last node (current page), set empty path
       if (idx === pathNodes.length - 1) {
         crumb.path = ""
@@ -80,7 +85,11 @@ export default ((opts?: Partial<BreadcrumbOptions>) => {
       <nav class={classNames(displayClass, "breadcrumb-container")} aria-label="breadcrumbs">
         {crumbs.map((crumb, index) => (
           <div class="breadcrumb-element">
-            <a href={crumb.path}>{crumb.displayName}</a>
+            {crumb.linkable && crumb.path ? (
+              <a href={crumb.path}>{crumb.displayName}</a>
+            ) : (
+              <span>{crumb.displayName}</span>
+            )}
             {index !== crumbs.length - 1 && <p>{` ${options.spacerSymbol} `}</p>}
           </div>
         ))}
