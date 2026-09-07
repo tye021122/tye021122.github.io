@@ -97,6 +97,17 @@ article:not(.home-page) h6 {
   color: var(--section-heading);
 }
 
+// ###, #### 제목과 바로 이어지는 본문을 한 묶음으로 읽히게 한다.
+article:not(.home-page) h3,
+article:not(.home-page) h4 {
+  margin-bottom: 0.45rem;
+}
+
+article:not(.home-page) h3 + p,
+article:not(.home-page) h4 + p {
+  margin-top: 0.45rem;
+}
+
 .breadcrumb-container .breadcrumb-element a,
 .breadcrumb-container .breadcrumb-element span {
   color: var(--gray);
