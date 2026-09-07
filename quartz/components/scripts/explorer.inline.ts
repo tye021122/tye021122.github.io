@@ -91,7 +91,13 @@ function createFileNode(currentSlug: FullSlug, node: FileTrieNode): HTMLLIElemen
   let label = node.displayName
   const prefix = label.match(/^\[([^\]]+)\]\s*/)
   const normalize = (value: string) => value.replace(/[\s-]/g, "").toLowerCase()
-  if (prefix && node.slug.split("/").slice(0, -1).some((part) => normalize(part) === normalize(prefix[1]))) {
+  if (
+    prefix &&
+    node.slug
+      .split("/")
+      .slice(0, -1)
+      .some((part) => normalize(part) === normalize(prefix[1]))
+  ) {
     label = label.slice(prefix[0].length)
   }
   const subtitle = label.match(/\s*\(([A-Za-z][^()]*)\)\s*$/)
@@ -135,8 +141,8 @@ function createFolderNode(
     folderContainer.classList.add("active")
   }
 
-  if (opts.folderClickBehavior === "link") {
-    // Replace button with link for link behavior
+  if (opts.folderClickBehavior === "link" && node.data) {
+    // index.md가 있는 폴더만 페이지 링크로 표시한다.
     const button = titleContainer.querySelector(".folder-button") as HTMLElement
     const a = document.createElement("a")
     a.href = resolveRelative(currentSlug, folderPath)
@@ -262,14 +268,12 @@ async function setupExplorer(currentSlug: FullSlug) {
     }
 
     // Set up folder click handlers
-    if (opts.folderClickBehavior === "collapse") {
-      const folderButtons = explorer.getElementsByClassName(
-        "folder-button",
-      ) as HTMLCollectionOf<HTMLElement>
-      for (const button of folderButtons) {
-        button.addEventListener("click", toggleFolder)
-        window.addCleanup(() => button.removeEventListener("click", toggleFolder))
-      }
+    const folderButtons = explorer.getElementsByClassName(
+      "folder-button",
+    ) as HTMLCollectionOf<HTMLElement>
+    for (const button of folderButtons) {
+      button.addEventListener("click", toggleFolder)
+      window.addCleanup(() => button.removeEventListener("click", toggleFolder))
     }
 
     const folderIcons = explorer.getElementsByClassName(
