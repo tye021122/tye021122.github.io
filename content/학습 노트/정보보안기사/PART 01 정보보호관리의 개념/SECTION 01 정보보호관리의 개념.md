@@ -12,7 +12,7 @@ aliases:
 ### 1.1 정보보호의 목표
 정보보호의 가장 기본적인 목표는 **기밀성, 무결성, 가용성**이며, 이를 *CIA Triad*라고 한다. 여기에 보안 실무에서 필요한 **인증성**과 **책임추적성**을 더하여 다섯 가지 목표로 정리할 수 있다
 
-<figure> <img src="Pasted image 20260504154954.png" width="300"> <figcaption>그림 1.CIA Triad</figcaption> </figure>
+<figure> <img src="Pasted image 20260504154954.png" width="300"> <figcaption>그림 1. CIA Triad</figcaption> </figure>
 
 #### 기밀성(비밀성, Confidentiality)
 **인가된 사람, 프로세스, 시스템만 알 필요성에 근거하여 정보에 접근할 수 있어야 한다**는 원칙이다
@@ -43,7 +43,7 @@ aliases:
 
 정보보호 대책은 **기술적, 물리적, 관리적 보호 대책**으로 구분할 수 있다. 아래 그림은 전산기·전산망·정보(데이터)를 중심으로 세 가지 보호 대책이 계층적으로 둘러싸고 있는 관계를 나타낸다
 
-<figure> <img src="Pasted image 20260504170946.png" width="400"> <figcaption>그림 2.정보보호 관리 계층도</figcaption> </figure>
+<figure> <img src="Pasted image 20260504170946.png" width="400"> <figcaption>그림 2. 정보보호 관리 계층도</figcaption> </figure>
 
 <br>
 

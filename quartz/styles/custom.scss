@@ -1,14 +1,5 @@
 @use "./base.scss";
 
-:root {
-  // 본문보다 살짝 부드러운 색으로 소제목의 계층을 구분한다.
-  --section-heading: #294264;
-
-  &[saved-theme="dark"] {
-    --section-heading: #d8deea;
-  }
-}
-
 // 콜아웃은 테마 색으로 통일하되 종류별 아이콘은 유지.
 article .callout[data-callout] {
   --color: var(--tertiary);
@@ -94,7 +85,7 @@ article:not(.home-page) h3,
 article:not(.home-page) h4,
 article:not(.home-page) h5,
 article:not(.home-page) h6 {
-  color: var(--section-heading);
+  color: var(--tertiary);
 }
 
 // ###, #### 제목과 바로 이어지는 본문을 한 묶음으로 읽히게 한다.
