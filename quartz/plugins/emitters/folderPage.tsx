@@ -15,7 +15,7 @@ import {
   simplifySlug,
 } from "../../util/path"
 import { defaultListPageLayout, sharedPageComponents } from "../../../quartz.layout"
-import { FolderContent } from "../../components"
+import { Content } from "../../components"
 import { write } from "./helpers"
 import { BuildCtx } from "../../util/ctx"
 import { StaticResources } from "../../util/resources"
@@ -91,7 +91,8 @@ export const FolderPage: QuartzEmitterPlugin<Partial<FolderPageOptions>> = (user
   const opts: FullPageLayout = {
     ...sharedPageComponents,
     ...defaultListPageLayout,
-    pageBody: FolderContent({ sort: userOpts?.sort }),
+    // 폴더 인덱스에는 작성한 index.md 본문만 표시한다.
+    pageBody: Content(),
     ...userOpts,
   }
 
