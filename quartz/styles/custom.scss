@@ -94,6 +94,11 @@ article:not(.home-page) h4 {
   margin-bottom: 0.45rem;
 }
 
+article:not(.home-page) h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
 article:not(.home-page) h3 + p,
 article:not(.home-page) h4 + p {
   margin-top: 0.45rem;
