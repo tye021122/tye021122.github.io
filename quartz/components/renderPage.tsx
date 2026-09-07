@@ -28,7 +28,8 @@ export function pageResources(
   staticResources: StaticResources,
 ): StaticResources {
   const contentIndexPath = joinSegments(baseDir, "static/contentIndex.json")
-  const contentIndexScript = `const fetchData = fetch("${contentIndexPath}").then(data => data.json())`
+  // 배포 후 이전 폴더 구조가 브라우저 캐시에 남지 않도록 항상 최신 인덱스를 요청한다.
+  const contentIndexScript = `const fetchData = fetch("${contentIndexPath}", { cache: "no-store" }).then(data => data.json())`
 
   const resources: StaticResources = {
     css: [
