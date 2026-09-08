@@ -5,7 +5,7 @@ tags:
   - 정보보안기사
   - 자격증공부
   - PART02
-draft: true
+draft: false
 aliases:
 ---
 # 1. 암호학의 기본 개념
