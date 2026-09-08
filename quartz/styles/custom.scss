@@ -134,17 +134,17 @@ ul.tags a.internal.tag-link {
   font-weight: 600;
 }
 
-// 데스크톱: 탐색기 공간을 확보하고 본문은 최대 760px로 제한.
+// 데스크톱: 탐색기를 줄이고 본문은 최대 760px로 제한.
 @media (min-width: 1200px) {
   .page {
-    max-width: 1360px;
+    max-width: 1290px;
     padding: 0 20px;
     box-sizing: border-box;
   }
 
   .page > #quartz-body {
-    grid-template-columns: 280px minmax(0, 760px) 230px;
-    column-gap: 30px;
+    grid-template-columns: 232px minmax(0, 760px) 210px;
+    column-gap: 24px;
     padding: 0;
   }
 
@@ -174,7 +174,7 @@ ul.tags a.internal.tag-link {
     .sidebar.left .explorer {
       background: var(--explorer-bg);
       color: var(--explorer-text);
-      padding: 1.25rem 1rem;
+      padding: 1rem 0.75rem;
       border-radius: 0;
     }
 
@@ -232,7 +232,7 @@ ul.tags a.internal.tag-link {
     // 폴더 계층 연결선
     .sidebar.left .explorer .folder-outer > ul {
       margin-left: 3px;
-      padding-left: 0.5rem;
+      padding-left: 0.375rem;
       border-left-color: #f5f1e833;
     }
 
@@ -309,4 +309,52 @@ ul.tags a.internal.tag-link {
   color: var(--tertiary);
   font-weight: 600;
   opacity: 1;
+}
+
+// 검색과 보기 설정을 동일한 높이의 도구 그룹으로 정렬.
+@media (min-width: 801px) {
+  .sidebar.left > .flex-component {
+    padding: 4px;
+    border: 1px solid var(--lightgray);
+    border-radius: 6px;
+
+    > div {
+      min-width: 0;
+    }
+
+    .search {
+      min-width: 0;
+      max-width: none;
+    }
+
+    .search-button {
+      height: 32px;
+      border: 0;
+      font-size: 0.875rem;
+    }
+
+    .darkmode,
+    .readermode {
+      display: block;
+      width: 32px;
+      height: 32px;
+      border-radius: 4px;
+
+      svg {
+        left: 7px;
+        width: 18px;
+        height: 18px;
+        top: 7px;
+      }
+    }
+
+    button:hover {
+      background: var(--highlight);
+    }
+
+    button:focus-visible {
+      outline: 2px solid var(--tertiary);
+      outline-offset: 2px;
+    }
+  }
 }
