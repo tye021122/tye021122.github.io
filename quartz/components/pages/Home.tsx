@@ -9,13 +9,13 @@ import style from "../styles/home.scss"
 const notebooks = [
   {
     name: "학습 노트",
-    description: "전공 수업부터 자격증 공부까지, 배운 것을 내 언어로 정리합니다.",
+    description: "전공과 자격증 공부를 내 언어로 정리합니다.",
   },
   {
     name: "개발 노트",
-    description: "아이디어를 만들고, 문제를 해결하며 쌓아가는 개발 기록입니다.",
+    description: "직접 만들며 겪은 시행착오를 남깁니다.",
   },
-  { name: "취미 노트", description: "영화와 책, 게임 속에서 발견한 좋아하는 것들을 남깁니다." },
+  { name: "취미 노트", description: "영화·책·게임에서 발견한 즐거움을 남깁니다." },
 ]
 
 const Home: QuartzComponent = ({ fileData, tree, allFiles, cfg }) => {

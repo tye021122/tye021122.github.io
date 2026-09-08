@@ -137,14 +137,14 @@ ul.tags a.internal.tag-link {
 // 데스크톱: 탐색기를 줄이고 본문은 최대 760px로 제한.
 @media (min-width: 1200px) {
   .page {
-    max-width: 1290px;
+    max-width: 1306px;
     padding: 0 20px;
     box-sizing: border-box;
   }
 
   .page > #quartz-body {
     grid-template-columns: 232px minmax(0, 760px) 210px;
-    column-gap: 24px;
+    column-gap: 32px;
     padding: 0;
   }
 
