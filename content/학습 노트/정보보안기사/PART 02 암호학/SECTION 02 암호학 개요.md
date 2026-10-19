@@ -43,7 +43,7 @@ aliases:
 - **키 공간의 크기:** 가능한 키의 개수
 - 모든 비트 조합을 키로 사용할 수 있다면, 키 길이가 n비트일 때 키 공간의 크기는 $2^n$이다
 
-<figure> <img src="Pasted image 20260504192933.png" width="400"> <figcaption>그림 1. 암, 복호화 과정</figcaption> </figure>
+<figure> <img src="Pasted image 20260910134002.png" width="400"> <figcaption>그림 1. 암, 복호화 과정</figcaption> </figure>
 
 ### 1.1.2 암호화, 복호화의 기호 표현
 | 기호     | 의미       |
@@ -68,7 +68,7 @@ aliases:
 
 암호 알고리즘에서 **변경 가능한 입력값에 해당하는 것이 키**다. 암호 알고리즘과 키를 분리하면 알고리즘 자체를 매번 바꾸지 않고도, 키를 변경하여 암호화 결과를 달라지게 할 수 있다. 이를 통해 **알고리즘은 반복해서 사용하면서 비밀값은 별도로 관리**할 수 있다
 
-<figure> <img src="Pasted image 20260908121933.png" width="400"> <figcaption>그림 2. 암호 알고리즘과 키의 분리</figcaption> </figure>
+<figure> <img src="Pasted image 20260910134034.png" width="400"> <figcaption>그림 2. 암호 알고리즘과 키의 분리</figcaption> </figure>
 
 그림은 알고리즘을 재사용하면서 키를 바꿀 수 있다는 점을 나타낸다. 다만 **모든 암호화에서 키를 매번 변경해야 한다는 의미는 아니다**
 
@@ -128,7 +128,7 @@ aliases:
 
 많은 블록 암호는 라운드 함수를 여러 번 적용하여 암호화 강도를 높인다. 각 라운드에서는 서로 다른 라운드 키를 사용할 수 있다
 
-<figure> <img src="Pasted image 20260908122040.png" width="400"> <figcaption>그림 3. 블럭 암호</figcaption> </figure>
+<figure> <img src="Pasted image 20260910134055.png" width="400"> <figcaption>그림 3. 블럭 암호</figcaption> </figure>
 
 #### 스트림 암호
 > [!NOTE] 스트림 암호
@@ -136,7 +136,7 @@ aliases:
 
 같은 키 스트림을 암호문과 XOR하면 원래 평문을 복원할 수 있다
 
-<figure> <img src="Pasted image 20260908122213.png" width="400"> <figcaption>그림 4. 스트림 암호화</figcaption> </figure>
+<figure> <img src="Pasted image 20260910134110.png" width="400"> <figcaption>그림 4. 스트림 암호화</figcaption> </figure>
 
 아래는 블럭암호와 스트림 암호에 대한 비교이다
 
@@ -217,7 +217,7 @@ aliases:
 
 ## 3.2 해시 함수
 
-**해시 함수(Hash Function)**는 임의 길이의 데이터를 입력받아 고정 길이의 **해시 값**으로 변환하는 알고리즘이다
+**해시 함수(Hash Function)는** 임의 길이의 데이터를 입력받아 고정 길이의 **해시 값**으로 변환하는 알고리즘이다
 
 ### 3.2.1 일방향 해시 함수
 > [!NOTE] 일방향 해시 함수(One-Way Hash Function)

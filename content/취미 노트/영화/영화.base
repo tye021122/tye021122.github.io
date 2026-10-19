@@ -1,0 +1,11 @@
+filters:
+  and:
+    - file.hasTag("영화")
+views:
+  - type: cards
+    name: 영화
+    order:
+      - file.name
+      - date
+      - rating
+    image: note.cover

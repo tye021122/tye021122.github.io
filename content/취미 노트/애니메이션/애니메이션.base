@@ -1,0 +1,11 @@
+filters:
+  and:
+    - file.hasTag("애니메이션")
+views:
+  - type: cards
+    name: 애니메이션
+    order:
+      - file.name
+      - date
+      - rating
+    image: note.cover

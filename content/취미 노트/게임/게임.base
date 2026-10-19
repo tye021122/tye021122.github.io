@@ -1,0 +1,11 @@
+filters:
+  and:
+    - file.hasTag("게임")
+views:
+  - type: cards
+    name: 게임
+    order:
+      - file.name
+      - date
+      - rating
+    image: note.cover

@@ -1,0 +1,11 @@
+filters:
+  and:
+    - file.hasTag("드라마")
+views:
+  - type: cards
+    name: 드라마
+    order:
+      - file.name
+      - date
+      - rating
+    image: note.cover

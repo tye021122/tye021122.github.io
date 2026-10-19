@@ -1,0 +1,11 @@
+filters:
+  and:
+    - file.hasTag("도서")
+views:
+  - type: cards
+    name: 도서
+    order:
+      - file.name
+      - date
+      - rating
+    image: note.cover

@@ -1,360 +1,422 @@
-@use "./base.scss";
-
-// 콜아웃은 테마 색으로 통일하되 종류별 아이콘은 유지.
-article .callout[data-callout] {
-  --color: var(--tertiary);
-  --border: var(--lightgray);
-  --bg: var(--highlight);
-}
-
-// put your custom CSS here!
-.explorer .explorer-note-title {
-  display: block;
-  word-break: keep-all;
-  overflow-wrap: anywhere;
-}
-
-// 영문 부제는 한 단계 작게 표시해 한글 제목과 구분.
-.explorer .explorer-note-subtitle {
-  display: block;
-  font-size: 0.75rem;
-  font-weight: 400;
-  line-height: 1.5;
-  margin-top: 0.15rem;
-}
+@use "./variables.scss" as *;
 
 html {
   font-size: 16px;
 }
-
-// 글 본문 전체의 기본 크기와 줄 간격.
-article {
-  // 1rem = 16px이므로 1.0625rem = 17px.
-  // 메뉴보다 본문을 조금 더 크게 표시한다.
-  font-size: 1.0625rem;
-
-  // 글자 크기의 1.9배를 한 줄의 높이로 사용한다.
-  // 17px 본문 기준 약 32.3px이며, 자식 요소에도 상속된다.
-  line-height: 1.9;
+body {
+  letter-spacing: -0.012em;
 }
-
-// 일반 문단과 목록 항목의 읽기 방식.
+article {
+  font-size: 1.0625rem;
+  line-height: 1.85;
+}
 article p,
 article li {
-  // 다른 스타일에 영향을 받더라도 문단과 목록의 줄 간격을 유지한다.
-  line-height: 1.9;
-
-  // 한글 단어가 줄 끝에서 글자 단위로 끊기는 것을 줄인다.
-  // 공간이 부족하면 단어를 다음 줄로 넘긴다.
+  line-height: 1.85;
   word-break: keep-all;
-
-  // 긴 URL이나 공백 없는 문자열이 영역을 넘칠 때는
-  // 필요한 지점에서 줄바꿈을 허용한다.
   overflow-wrap: anywhere;
 }
 
-// 글 상단에 표시되는 제목.
-.article-title {
-  // 최소 28px, 화면 너비의 3%, 최대 40px 사이에서 크기를 조절한다.
-  // 1.75rem = 28px / 2.5rem = 40px.
-  font-size: clamp(1.75rem, 3vw, 2.5rem);
-
-  // 제목이 두 줄 이상일 때 본문보다 촘촘한 줄 간격을 사용한다.
-  line-height: 1.35;
-
-  // 글자 사이 간격을 제목 글자 크기의 3.5%만큼 줄인다.
-  letter-spacing: -0.035em;
+.page-title a {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  letter-spacing: -0.05em;
+  white-space: nowrap;
+}
+.page-title a::before {
+  width: 2rem;
+  height: 2rem;
+  flex: 0 0 auto;
+  background: url("/static/icon.png") center / contain no-repeat;
+  content: "";
 }
 
-// 본문 안의 2단계 제목.
-// Markdown에서 "## 제목"으로 작성한 부분에 해당한다.
-article h2 {
-  // 이전 문단과의 간격을 36px 확보해 새 섹션을 구분한다.
-  margin-top: 2.25rem;
-
-  // 제목 아래 내용과 16px 간격을 둔다.
-  margin-bottom: 1rem;
-
-  // 소제목이 여러 줄일 때의 줄 간격.
-  line-height: 1.45;
+.home-hero {
+  padding: 0.75rem 0 1.75rem;
 }
-
-// 글 제목, 보조 정보, 본문 제목이 서로 경쟁하지 않도록 색의 역할을 분리한다.
-article:not(.home-page) h2,
-article:not(.home-page) h3,
-article:not(.home-page) h4,
-article:not(.home-page) h5,
-article:not(.home-page) h6 {
+.home-eyebrow {
+  margin: 0;
   color: var(--tertiary);
-}
-
-// ###, #### 제목과 바로 이어지는 본문을 한 묶음으로 읽히게 한다.
-article:not(.home-page) h3,
-article:not(.home-page) h4 {
-  margin-bottom: 0.45rem;
-}
-
-article:not(.home-page) h4 {
-  font-size: 0.95rem;
+  font-size: 0.7rem;
   font-weight: 600;
+  letter-spacing: 0.16em;
 }
-
-article:not(.home-page) h3 + p,
-article:not(.home-page) h4 + p {
-  margin-top: 0.45rem;
+.home-hero h1 {
+  margin: 0.75rem 0 1rem;
+  color: var(--dark);
+  font-size: clamp(2rem, 3.4vw, 3.2rem);
+  line-height: 1.16;
+  letter-spacing: -0.065em;
 }
-
-.breadcrumb-container .breadcrumb-element a,
-.breadcrumb-container .breadcrumb-element span {
-  color: var(--gray);
-  font-size: 0.875rem;
-  font-weight: 500;
+.home-hero h1 > a[role="anchor"] {
+  display: none;
 }
-
-.breadcrumb-container .breadcrumb-element:last-child a,
-.breadcrumb-container .breadcrumb-element:last-child span {
+.home-intro {
+  max-width: 42rem;
+  margin: 0;
   color: var(--darkgray);
-  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.85;
 }
-
-.breadcrumb-container .breadcrumb-element p {
-  color: var(--gray);
-  opacity: 0.65;
+.home-sections {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 1rem 0 2.75rem;
 }
-
-.content-meta {
-  color: var(--gray);
-  font-size: 0.875rem;
+.home-sections a {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  padding: 1rem 0;
+  border-top: 2px solid var(--dark);
+  color: var(--dark);
+  text-decoration: none;
 }
-
-ul.tags a.internal.tag-link {
+.home-sections a:focus-visible {
+  outline: 2px solid var(--tertiary);
+  outline-offset: 4px;
+}
+.home-sections a:hover,
+.home-sections a:focus-visible {
+  border-color: var(--tertiary);
   color: var(--tertiary);
-  background: color-mix(in srgb, var(--tertiary) 9%, transparent);
-  font-size: 0.875rem;
+}
+.home-sections span {
+  color: var(--tertiary);
+  font-family: Georgia, serif;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+.home-sections strong {
+  margin-top: 0.35rem;
+  font-size: 1rem;
+}
+.home-sections small {
+  margin-top: 0.35rem;
+  color: var(--gray);
+  font-size: 0.75rem;
+  line-height: 1.55;
+}
+
+.hobby-sections a > small:last-child {
+  margin-top: auto;
+  padding-top: 0.75rem;
+  color: var(--tertiary);
+}
+
+.search .search-button {
+  min-height: 2.75rem;
+  border-color: var(--lightgray);
+  background: color-mix(in srgb, var(--light) 88%, var(--dark) 12%);
+}
+.explorer .explorer-content li > a {
+  display: block;
+  padding: 0.32rem 0.25rem;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+.explorer .explorer-content li > a.active,
+.explorer .explorer-content li > a.is-active {
+  background: var(--light);
+  color: var(--dark);
   font-weight: 600;
 }
 
-// 데스크톱: 탐색기를 줄이고 본문은 최대 760px로 제한.
+.graph h3 {
+  font-size: 0.9rem;
+  letter-spacing: -0.02em;
+}
+.graph .graph-outer {
+  border-color: var(--lightgray);
+  background: color-mix(in srgb, var(--light) 92%, var(--dark) 8%);
+}
+.home-recent {
+  margin-top: 0.5rem;
+}
+.home-recent:has(.recent-ul:empty) {
+  display: none;
+}
+.home-recent-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+.home-recent-header h2 {
+  margin: 0;
+  font-size: 1.35rem;
+}
+.recent-sort {
+  display: flex;
+  gap: 0.8rem;
+}
+.recent-sort button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--gray);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.78rem;
+}
+.recent-sort button[aria-pressed="true"] {
+  color: var(--tertiary);
+  font-weight: 600;
+}
+.recent-sort button:hover {
+  color: var(--dark);
+}
+.recent-notes > h3 {
+  display: none;
+  margin: 0;
+}
+.recent-notes .recent-ul {
+  margin: 0;
+  padding: 0;
+}
+.recent-notes .recent-li {
+  padding: 0.85rem 0;
+  border-top: 1px solid var(--lightgray);
+}
+.recent-notes .recent-li:nth-child(n + 7) {
+  display: none;
+}
+.recent-notes .section > .desc > h3 {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+.recent-notes .section > .meta {
+  color: var(--gray);
+  font-size: 0.75rem;
+}
+footer {
+  border-top: 1px solid var(--lightgray);
+  padding-top: 1rem;
+}
+
 @media (min-width: 1200px) {
   .page {
-    max-width: 1306px;
-    padding: 0 20px;
-    box-sizing: border-box;
+    max-width: 1440px;
+    padding: 0 2rem;
   }
-
   .page > #quartz-body {
-    grid-template-columns: 232px minmax(0, 760px) 210px;
-    column-gap: 32px;
-    padding: 0;
+    grid-template-columns: 230px minmax(0, 760px) 230px;
+    column-gap: 2.25rem;
   }
+}
 
-  // 제목과 양쪽 패널의 시작 위치를 96px에서 48px로 올림.
-  .page > #quartz-body .sidebar {
+@media (min-width: 801px) {
+  .explorer {
+    padding: 1rem 0.85rem;
+    background: color-mix(in srgb, var(--dark) 86%, transparent);
+    color: var(--light);
+  }
+  .explorer .desktop-explorer,
+  .explorer .desktop-explorer h2,
+  .explorer .folder-container a,
+  .explorer .folder-container button,
+  .explorer .folder-container button span,
+  .explorer .folder-icon,
+  .explorer .explorer-content li > a {
+    color: var(--light);
+  }
+}
+
+@media (max-width: 800px) {
+  .page > #quartz-body {
+    box-sizing: border-box;
+    width: 100%;
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+  }
+  .page > #quartz-body .center {
+    width: 100%;
     min-width: 0;
-    padding: 3rem 0 1.5rem;
   }
-
-  .page > #quartz-body .page-header {
-    margin-top: 3rem;
+  .explorer .folder-container a,
+  .explorer .folder-container button,
+  .explorer .folder-container button span,
+  .explorer .folder-icon,
+  .explorer .explorer-content li > a {
+    color: var(--darkgray);
   }
-}
-
-@media (min-width: 1200px) {
-  // 두 테마에서 같은 패널 구조를 사용하고, 다크 모드는 바탕만 더 어둡게.
-  :root {
-    --explorer-bg: #182b49;
-    --explorer-text: #f5f1e8;
-    --explorer-accent: #b7472a;
-
-    &[saved-theme="dark"] {
-      --explorer-bg: #122038;
-      --explorer-accent: #f2a477;
-    }
-
-    .sidebar.left .explorer {
-      background: var(--explorer-bg);
-      color: var(--explorer-text);
-      padding: 1rem 0.75rem;
-      border-radius: 0;
-    }
-
-    // 탐색기 제목
-    .sidebar.left .explorer .desktop-explorer,
-    .sidebar.left .explorer .desktop-explorer h2 {
-      color: var(--explorer-text);
-    }
-
-    .sidebar.left .explorer .desktop-explorer h2 {
-      font-size: 0.875rem;
-    }
-
-    // 폴더 이름과 화살표
-    .sidebar.left .explorer .folder-container a,
-    .sidebar.left .explorer .folder-container button,
-    .sidebar.left .explorer .folder-container button span,
-    .sidebar.left .explorer .folder-icon {
-      color: var(--explorer-text);
-    }
-
-    .sidebar.left .explorer .folder-container > div {
-      min-width: 0;
-    }
-
-    .sidebar.left .explorer .folder-container a,
-    .sidebar.left .explorer .folder-container button span {
-      font-size: 0.875rem;
-      font-weight: 600;
-      line-height: 1.6;
-      overflow-wrap: anywhere;
-    }
-
-    // 글 제목은 보통 굵기로, 들여쓰기는 줄여 읽을 공간 확보.
-    .sidebar.left .explorer .explorer-content li > a {
-      display: block;
-      padding: 0.35rem 0.375rem;
-      border-left: 3px solid transparent;
-      color: var(--explorer-text);
-      opacity: 1;
-      font-size: 0.875rem;
-      font-weight: 400;
-      line-height: 1.65;
-      overflow-wrap: anywhere;
-    }
-
-    // 현재 읽는 글
-    .sidebar.left .explorer .explorer-content li > a.active {
-      background: #f5f1e8;
-      color: #182b49;
-      border-left-color: var(--explorer-accent);
-      font-weight: 600;
-    }
-
-    // 폴더 계층 연결선
-    .sidebar.left .explorer .folder-outer > ul {
-      margin-left: 3px;
-      padding-left: 0.375rem;
-      border-left-color: #f5f1e833;
-    }
-
-    // 스크롤바도 패널 색에 맞춰 눈에 덜 띄게.
-    .sidebar.left .explorer .explorer-content {
-      scrollbar-width: thin;
-      scrollbar-color: #f5f1e880 var(--explorer-bg);
-    }
-
-    .sidebar.left .explorer .explorer-content::-webkit-scrollbar {
-      width: 6px;
-    }
-
-    .sidebar.left .explorer .explorer-content::-webkit-scrollbar-track {
-      background: var(--explorer-bg);
-    }
-
-    .sidebar.left .explorer .explorer-content::-webkit-scrollbar-thumb {
-      background: #f5f1e880;
-      border-radius: 3px;
-    }
+  .home-sections {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .home-hero h1 {
+    font-size: 2rem;
   }
 }
 
+article:not(:has(.home-hero)) :is(h1, h2, h3, h4, h5, h6) {
+  color: var(--tertiary);
+  line-height: 1.4;
+}
+article:not(:has(.home-hero)) h1 {
+  font-size: 2rem;
+  margin-top: 2.5rem;
+}
+article:not(:has(.home-hero)) h2 {
+  font-size: 1.65rem;
+  margin-top: 2.25rem;
+}
+article:not(:has(.home-hero)) h3 {
+  font-size: 1.35rem;
+  margin-top: 1.8rem;
+  margin-bottom: 0.4rem;
+}
+article:not(:has(.home-hero)) h4 {
+  font-size: 1.15rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.2rem;
+}
+article:not(:has(.home-hero)) h5 {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+article:not(:has(.home-hero)) h6 {
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+article:not(:has(.home-hero)) h3 + :is(p, ul, ol, blockquote, pre),
+article:not(:has(.home-hero)) h4 + :is(p, ul, ol, blockquote, pre) {
+  margin-top: 0;
+}
+
+.explorer .folder-container,
+.explorer .folder-container > div {
+  min-width: 0;
+}
+.explorer .folder-container > div {
+  flex: 1;
+}
+.explorer .folder-title,
+.explorer .explorer-content li > a {
+  display: block;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+.explorer .folder-title {
+  font-size: 0.82rem !important;
+  line-height: 1.35rem !important;
+}
+.explorer .explorer-content li > a {
+  font-size: 0.76rem;
+  line-height: 1.4;
+}
+.explorer .folder-icon {
+  margin-right: 2px;
+}
+.explorer .folder-outer > ul {
+  margin-left: 2px;
+  padding-left: 0.4rem;
+}
+.explorer .explorer-content {
+  overflow-x: hidden;
+}
+
+article ul:not(.tags) > li:not(:has(> input[type="checkbox"])) {
+  position: relative;
+  list-style: none;
+}
+article ul:not(.tags) > li:not(:has(> input[type="checkbox"]))::before {
+  position: absolute;
+  left: -0.65rem;
+  content: "•";
+}
+article p:has(+ :is(ul, ol)) {
+  margin-bottom: 0;
+}
+article p + :is(ul, ol) {
+  margin-top: 0.5rem;
+}
+.toc ul.toc-content > li > a,
+.toc ul.toc-content > li > a.in-view {
+  color: var(--darkgray);
+  opacity: 0.65;
+}
+.toc ul.toc-content > li > a[aria-current="location"] {
+  color: var(--tertiary);
+  opacity: 1;
+  font-weight: 600;
+}
+
 @media (min-width: 1200px) {
-  // 그래프 아래의 남은 화면 높이를 목차가 정확히 사용하도록 한다.
-  // flex-basis가 내용 높이를 기준으로 잡히면 긴 목차의 스크롤 끝이
-  // 사이드바 바깥에서 잘리므로, 0을 기준으로 남은 공간을 배분한다.
+  .page {
+    max-width: 1540px;
+  }
+  .page > #quartz-body {
+    grid-template-columns: 270px minmax(0, 760px) 270px;
+    column-gap: 2rem;
+  }
+  .page > #quartz-body .sidebar {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
   .sidebar.right > .graph {
     flex: 0 0 auto;
   }
-
   .sidebar.right .toc {
     display: flex;
     flex: 1 1 0;
     min-height: 0;
-    border-left: 1px solid var(--lightgray);
-    padding-left: 1.25rem;
   }
-
   .sidebar.right .toc .toc-header {
     flex: 0 0 auto;
   }
-
   .sidebar.right .toc .toc-content.overflow {
-    // 내용의 전체 높이가 아니라 부모에게서 배정받은 높이를 스크롤 영역으로 사용.
     flex: 1 1 0;
     height: 0;
     min-height: 0;
     max-height: 100%;
     overflow-y: auto;
   }
+  .sidebar.right .toc:has(.toc-header.collapsed) {
+    flex: 0 0 auto;
+  }
+  .sidebar.right > .backlinks {
+    flex: 0 1 auto;
+    max-height: 20vh;
+    overflow-y: auto;
+  }
 }
-
-// 목차는 본문보다 작고 가볍게, 현재 항목만 강조.
-.sidebar.right .toc .toc-header h3 {
-  font-size: 0.9375rem;
-}
-
 .sidebar.right .toc .toc-content > li > a {
   display: block;
   padding: 0.25rem 0;
-  color: var(--dark);
-  opacity: 1;
   font-size: 0.875rem;
-  font-weight: 400;
   line-height: 1.55;
   word-break: keep-all;
   overflow-wrap: anywhere;
 }
-
-// 현재 화면에 들어온 본문 구간
-.sidebar.right .toc .toc-content > li > a.in-view {
-  color: var(--tertiary);
-  font-weight: 600;
-  opacity: 1;
+.folder-label {
+  color: var(--darkgray);
 }
 
-// 검색과 보기 설정을 동일한 높이의 도구 그룹으로 정렬.
-@media (min-width: 801px) {
-  .sidebar.left > .flex-component {
-    padding: 4px;
-    border: 1px solid var(--lightgray);
-    border-radius: 6px;
-
-    > div {
-      min-width: 0;
-    }
-
-    .search {
-      min-width: 0;
-      max-width: none;
-    }
-
-    .search-button {
-      height: 32px;
-      border: 0;
-      font-size: 0.875rem;
-    }
-
-    .darkmode,
-    .readermode {
-      display: block;
-      width: 32px;
-      height: 32px;
-      border-radius: 4px;
-
-      svg {
-        left: 7px;
-        width: 18px;
-        height: 18px;
-        top: 7px;
-      }
-    }
-
-    button:hover {
-      background: var(--highlight);
-    }
-
-    button:focus-visible {
-      outline: 2px solid var(--tertiary);
-      outline-offset: 2px;
-    }
-  }
+.page-listing .tags {
+  display: none;
+}
+.folder-sort {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.8rem;
+  margin-bottom: 0.6rem;
+}
+.folder-sort button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--gray);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.78rem;
+}
+.folder-sort button[aria-pressed="true"] {
+  color: var(--tertiary);
+  font-weight: 600;
 }
