@@ -65,7 +65,8 @@ article li {
   gap: 1rem;
   margin: 1rem 0 2.75rem;
 }
-.home-sections a {
+.home-sections > a,
+.home-sections > .folder-label {
   display: flex;
   min-width: 0;
   flex-direction: column;
@@ -83,7 +84,7 @@ article li {
   border-color: var(--tertiary);
   color: var(--tertiary);
 }
-.home-sections span {
+.home-sections > :is(a, .folder-label) > span {
   color: var(--tertiary);
   font-family: Georgia, serif;
   font-size: 0.9rem;
