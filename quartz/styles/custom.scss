@@ -420,3 +420,17 @@ article p + :is(ul, ol) {
   color: var(--tertiary);
   font-weight: 600;
 }
+
+// Keep a table close to its preceding description or title.
+// Markdown's separating blank line stays intact; horizontal scrolling is preserved.
+article :is(p, h1, h2, h3, h4, h5, h6):has(+ .table-container) {
+  margin-bottom: 0;
+}
+article :is(p, h1, h2, h3, h4, h5, h6) + .table-container {
+  margin-top: 0;
+  padding-top: 0;
+
+  > table {
+    margin-top: 0.25rem;
+  }
+}
