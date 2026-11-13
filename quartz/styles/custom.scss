@@ -255,12 +255,33 @@ footer {
 }
 
 article:not(:has(.home-hero)) :is(h1, h2, h3, h4, h5, h6) {
-  color: var(--tertiary);
+  color: var(--dark);
   line-height: 1.4;
 }
 article:not(:has(.home-hero)) h1 {
+  color: var(--tertiary);
   font-size: 2rem;
   margin-top: 2.5rem;
+}
+
+// Existing notes use one or two standalone breaks around chapter dividers.
+article:not(:has(.home-hero)) {
+  > br:has(+ hr + h1, + hr + br + h1, + hr + br + br + h1),
+  > br:has(+ br + hr + h1, + br + hr + br + h1, + br + hr + br + br + h1),
+  > hr + br:has(+ h1, + br + h1),
+  > hr + br + br:has(+ h1) {
+    display: none;
+  }
+
+  > hr:has(+ h1, + br + h1, + br + br + h1) {
+    margin: 2.75rem 0 1.375rem;
+  }
+
+  > hr + h1,
+  > hr + br + h1,
+  > hr + br + br + h1 {
+    margin-top: 0;
+  }
 }
 article:not(:has(.home-hero)) h2 {
   font-size: 1.65rem;
@@ -422,16 +443,38 @@ article p + :is(ul, ol) {
   font-weight: 600;
 }
 
-// Keep a table close to its preceding description or title.
-// Markdown's separating blank line stays intact; horizontal scrolling is preserved.
-article :is(p, h1, h2, h3, h4, h5, h6):has(+ .table-container) {
-  margin-bottom: 0;
-}
-article :is(p, h1, h2, h3, h4, h5, h6) + .table-container {
-  margin-top: 0;
-  padding-top: 0;
+article:not(:has(.home-hero)) {
+  .table-container {
+    margin-block: 0.625rem 1.5rem;
 
-  > table {
-    margin-top: 0.25rem;
+    > table {
+      margin: 0;
+      padding: 0;
+
+      > * {
+        line-height: 1.55;
+      }
+
+      :is(th, td) {
+        padding: 0.625rem 0.75rem;
+        vertical-align: top;
+      }
+
+      th {
+        border-bottom: 1px solid var(--lightgray);
+        background: var(--highlight);
+      }
+
+      // Two-column comparison tables with left-aligned headings use the reading width.
+      &:has(thead th:nth-child(2):last-child):not(
+          :has(thead th[style*="text-align:right"], thead th[style*="text-align:center"])
+        ) {
+        width: 100%;
+      }
+    }
+  }
+
+  :is(p, h1, h2, h3, h4, h5, h6):has(+ .table-container) {
+    margin-bottom: 0;
   }
 }
