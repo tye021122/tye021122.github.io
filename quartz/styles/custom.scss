@@ -261,7 +261,7 @@ article:not(:has(.home-hero)) :is(h1, h2, h3, h4, h5, h6) {
 article:not(:has(.home-hero)) h1 {
   color: var(--tertiary);
   font-size: 2rem;
-  margin-top: 2.5rem;
+  margin-block: 2.5rem 1rem;
 }
 
 // Existing notes use one or two standalone breaks around chapter dividers.
@@ -285,12 +285,14 @@ article:not(:has(.home-hero)) {
 }
 article:not(:has(.home-hero)) h2 {
   font-size: 1.65rem;
-  margin-top: 2.25rem;
+  margin-block: 2.25rem 0.75rem;
 }
 article:not(:has(.home-hero)) h3 {
   font-size: 1.35rem;
-  margin-top: 1.8rem;
-  margin-bottom: 0.4rem;
+  margin-block: 1.5rem 0.5rem;
+}
+article:not(:has(.home-hero)) h1 + h2 {
+  margin-top: 0;
 }
 article:not(:has(.home-hero)) h4 {
   font-size: 1.15rem;
@@ -305,7 +307,7 @@ article:not(:has(.home-hero)) h6 {
   font-size: 0.95rem;
   font-weight: 500;
 }
-article:not(:has(.home-hero)) h3 + :is(p, ul, ol, blockquote, pre),
+article:not(:has(.home-hero)) :is(h1, h2, h3) + :is(p, ul, ol, blockquote, pre, .callout, figure),
 article:not(:has(.home-hero)) h4 + :is(p, ul, ol, blockquote, pre) {
   margin-top: 0;
 }
